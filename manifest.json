@@ -1,0 +1,48 @@
+{
+    "name": "Test Extension",
+    "description": "Automatically integrate your Leetcode submissions to GitHub",
+    "version": "1.0.0",
+    "author": "Soikat Hossain",
+    "manifest_version": 3,
+    "action": {
+        "default_icon": "assets/octocode.png",
+        "default_popup": "popup.html"
+    },
+    "icons": {
+        "16": "assets/octocode.png",
+        "48": "assets/octocode.png",
+        "128": "assets/octocode.png"
+    },
+    "background.service_worker": {
+        "scripts": [
+            "scripts/background.js"
+        ],
+        "persistent": false
+    },
+    "host_permissions": [
+        "https://github.com/*",
+        "https://api.github.com/*",
+        "https://leetcode.com/*"
+    ],
+    "permissions":[
+        "tabs",
+        "unlimitedStorage",
+        "storage"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "https://leetcode.com/*",
+                "https://github.com/*"
+            ],
+            "js": [
+                "scripts/leetcode.js",
+                "scripts/authorize.js"
+            ],
+            "run_at": "document_idle"
+        }
+    ]
+}
+
+
+
