@@ -31,6 +31,7 @@ const localAuth = {
         });
       } else {
         // eslint-disable-next-line
+        console.log("code is : " + url.match(/\?code=([\w\/\-]+)/)[1])
         this.requestToken(url.match(/\?code=([\w\/\-]+)/)[1]);
       }
     },
@@ -49,10 +50,13 @@ const localAuth = {
   
       const xhr = new XMLHttpRequest();
       xhr.addEventListener('readystatechange', function () {
+          
         if (xhr.readyState === 4) {
+            console.log(xhr.status)
           if (xhr.status === 200) {
+            console.log("response text: "+ xhr.responseText.match(/access_token=([^&]*)/)[1])
             that.finish(
-              xhr.responseText.match(/access_token=([^&]*)/)[1],
+              xhr.responseText.match(/access_token=([^&]*)/)[1]
             );
           } else {
             chrome.runtime.sendMessage({
@@ -80,6 +84,7 @@ const localAuth = {
       xhr.addEventListener('readystatechange', function () {
         if (xhr.readyState === 4) {
           if (xhr.status === 200) {
+              console.log("username: " + JSON.parse(xhr.responseText).login)
             const username = JSON.parse(xhr.responseText).login;
             chrome.runtime.sendMessage({
               closeWebPage: true,
@@ -102,8 +107,12 @@ const localAuth = {
   
   /* Check for open pipeline */
   if (window.location.host === 'github.com') {
+    console.log("hello extracting access code to verify this")
+
     chrome.storage.local.get('pipeline_leethub', (data) => {
+        
       if (data && data.pipeline_leethub) {
+        console.log(data.pipeline_leethub)
         localAuth.parseAccessCode(link);
       }
     });
