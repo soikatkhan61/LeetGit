@@ -9,7 +9,7 @@ const oAuth2 = {
         'https://github.com/login/oauth/access_token';
       this.AUTHORIZATION_URL =
         'https://github.com/login/oauth/authorize';
-      this.CLIENT_ID = 'beb4f0aa19ab8faf5004';
+      this.CLIENT_ID = 'b37ae7c40548381c30bf';
       this.CLIENT_SECRET = '5bc58ca87201334693e8c18701e1f380931d61a4';
       this.REDIRECT_URL = 'https://github.com/'; // for example, https://github.com
       this.SCOPES = ['repo'];
