@@ -35,6 +35,8 @@ $('#hook_URL').attr('href',chrome.runtime.getURL('welcome.html'));
 chrome.storage.local.get('leethub_auth_token', (data) => {
     const token = data.leethub_auth_token;
     console.log("leethub auth token is: " + token)
+
+    
     if (token === null || token === undefined) {
         console.log("Token cannot find")
         action = true;

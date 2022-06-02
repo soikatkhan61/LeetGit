@@ -1,6 +1,5 @@
 body {
-  background-color: #000000 !important;
-  padding: 10px;
+  background: #414653 !important;
   text-align: center;
   transition: background-color 0.75s ease;
   font-family: 'Helvetica Neue', 'Lucida Grande', sans-serif;
