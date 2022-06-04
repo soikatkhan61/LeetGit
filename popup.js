@@ -1,6 +1,6 @@
 /* global oAuth2 */
 /* eslint no-undef: "error" */
-
+console.log(chrome.storage)
 let action = false;
 
 let authenticate = document.getElementById('authenticate')
@@ -19,6 +19,7 @@ let repo_url = document.getElementById('repo_url')
 
 authenticate.addEventListener('click', () => {
     if (action) {
+        console.log("oauth2 is called bcz authentication button is clicked")
         oAuth2.begin()
     }
 })
@@ -27,14 +28,18 @@ authenticate.addEventListener('click', () => {
 
 /* Get URL for welcome page */
 
-/*
-$('#welcome_URL').attr('href',chrome.runtime.getURL('welcome.html'));
-$('#hook_URL').attr('href',chrome.runtime.getURL('welcome.html'));
-*/
+//let welcome_URL = document.getElementById('welcome_URL')
+let hook_URL = document.getElementById('hook_URL')
+
+//welcome_URL.getAttribute('href',chrome.runtime.getURL('welcome.html'))
+hook_URL.getAttribute('href',chrome.runtime.getURL('welcome.html'))
+
+
+
 
 chrome.storage.local.get('leethub_auth_token', (data) => {
     const token = data.leethub_auth_token;
-    console.log("leethub auth token is: " + token)
+    console.log("leethub auth token is: " + data.username)
 
     
     if (token === null || token === undefined) {

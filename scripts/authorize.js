@@ -94,6 +94,7 @@ const localAuth = {
                         KEY: this.KEY,
                     });
                 }
+                console.log(chrome.storage)
             }
         });
         xhr.open('GET', AUTHENTICATION_URL, true);

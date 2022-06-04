@@ -260,8 +260,9 @@ hook_button.addEventListener('click', () => {
           - step 3: if (1), POST request to repoName (iff option = create new repo) ; else display error message.
           - step 4: if proceed from 3, hide hook_mode and display commit_mode (show stats e.g: files pushed/questions-solved/leaderboard)
         */
-        chrome.storage.local.get('leethub_token', (data) => {
-            const token = data.leethub_token;
+        console.log(chrome.storage.local);
+        chrome.storage.local.get('leethub_auth_token', (data) => {
+            const token = data.leethub_auth_token;
             if (token === null || token === undefined) {
                 /* Not authorized yet. */
                 error.innerText = 'Authorization error - Grant LeetHub access to your GitHub account to continue (launch extension to proceed)',
@@ -299,8 +300,8 @@ chrome.storage.local.get('mode_type', (data) => {
 
     if (mode && mode === 'commit') {
         /* Check if still access to repo */
-        chrome.storage.local.get('leethub_token', (data2) => {
-            const token = data2.leethub_token;
+        chrome.storage.local.get('leethub_auth_token', (data2) => {
+            const token = data2.leethub_auth_token;
             if (token === null || token === undefined) {
                 /* Not authorized yet. */
                 error.innerText = 'Authorization error - Grant LeetHub access to your GitHub account to continue (click LeetHub extension on the top right to proceed)',

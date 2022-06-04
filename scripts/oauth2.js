@@ -32,14 +32,17 @@ const oAuth2 = {
   
       chrome.storage.local.set({ pipeline_leethub: true }, () => {
         // opening pipeline_leethub temporarily
-  
+        
         chrome.tabs.create({ url, active: true }, function () {
           window.close();
           chrome.tabs.getCurrent(function (tab) {
             chrome.tabs.remove(tab.id, function () {});
           });
         });
+        
       });
-    },
+
+      console.log(chrome.storage.local.set({ pipeline_leethub: true }))
+    }
   };
   
